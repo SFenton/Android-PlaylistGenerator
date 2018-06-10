@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Playlist Generator</string>
+
+    // Navigation names
+    <string name="navigation_home">Home</string>
+    <string name="navigation_playlists">Playlist Generation Options</string>
+    <string name="navigation_daily">Daily Playlist Options</string>
+    <string name="navigation_spotify">Spotify Conversion</string>
+    <string name="navigation_settings">Settings</string>
+
+    // Header
+    <string name="header_title">Playlist Generator</string>
+</resources>
