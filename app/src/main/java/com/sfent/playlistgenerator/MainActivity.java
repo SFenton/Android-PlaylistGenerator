@@ -1,9 +1,14 @@
 package com.sfent.playlistgenerator;
 
+import android.Manifest;
 import android.app.Fragment;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -11,8 +16,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.io.File;
+import java.security.Permission;
+import java.security.Permissions;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener,
  PlaylistGenerationOptions.OnFragmentInteractionListener, Settings.OnFragmentInteractionListener,
@@ -20,6 +30,7 @@ Spotify.OnFragmentInteractionListener, DailyPlaylistOptions.OnFragmentInteractio
 
     private DrawerLayout mDrawerLayout;
     private Fragment mFragment;
+    static final Integer READ_EXST = 0x4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +150,8 @@ Spotify.OnFragmentInteractionListener, DailyPlaylistOptions.OnFragmentInteractio
                     }
                 }
         );
+
+        checkPremission();
     }
 
     @Override
@@ -154,5 +167,24 @@ Spotify.OnFragmentInteractionListener, DailyPlaylistOptions.OnFragmentInteractio
     @Override
     public void onFragmentInteraction(Uri uri) {
         // Empty
+    }
+
+    void checkPremission() {
+        //select which permission you want
+        final String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+        // if in fragment use getActivity()
+        if (ContextCompat.checkSelfPermission(MainActivity.this, permission)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, permission)) {
+
+            } else {
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{permission}, READ_EXST);
+            }
+        } else {
+            // you have permission go ahead
+            File ed = Environment.getExternalStorageDirectory();
+            File[] fs = ed.listFiles();
+            Log.i(ed.getAbsolutePath(), (fs != null ? fs.length : "no") + " files found");
+        }
     }
 }
