@@ -69,6 +69,7 @@ public class MetadataReader
         String albumArtist = mRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST);
         String album = mRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
         String yearString =  mRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_YEAR);
+
         int year = 0;
         if (yearString != null && !yearString.isEmpty())
         {
@@ -97,7 +98,5 @@ public class MetadataReader
         values.put(DatabaseReaderContract.SongEntry.COLUMN_NAME_LAST_MODIFIED_DATE, modifiedDate.toString());
 
         long newRowId = db.insert(DatabaseReaderContract.SongEntry.TABLE_NAME, null, values);
-
-        System.out.println(title);
     }
 }
