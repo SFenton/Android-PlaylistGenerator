@@ -36,6 +36,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Button mScanButton;
+    private DatabaseReaderHelper dbHelper;
 
     private OnFragmentInteractionListener mListener;
 
@@ -83,7 +84,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                MetadataReader reader = new MetadataReader();
+                dbHelper = new DatabaseReaderHelper(getContext());
+                MetadataReader reader = new MetadataReader(dbHelper);
                 reader.UpdateMetadata();
             }
         });
