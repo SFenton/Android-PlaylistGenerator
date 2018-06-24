@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_menu" />
-                            <entry key="sourceFile" value="C:\Users\sfent" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_baseline_save_24px" />
+                            <entry key="sourceFile" value="C:\Users\sfent\Documents\GitHub\Android-PlaylistGenerator\app\icons\baseline-save-24px.svg" />
                           </map>
                         </option>
                       </PersistentState>
