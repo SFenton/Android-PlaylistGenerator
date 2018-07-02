@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -84,9 +85,17 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                mScanButton.setEnabled(false);
+                Toast.makeText(HomeFragment.super.getContext(), "Scanning your library...", Toast.LENGTH_LONG).show();
                 dbHelper = new DatabaseReaderHelper(getContext());
-                MetadataReader reader = new MetadataReader(dbHelper);
-                reader.UpdateMetadata();
+                new MetadataReader(dbHelper, new AsyncResponse() {
+                    @Override
+                    public void processFinish(Integer result)
+                    {
+                        mScanButton.setEnabled(true);
+                        Toast.makeText(HomeFragment.super.getContext(), "Scan complete!  Found " + result + " tracks.", Toast.LENGTH_LONG).show();
+                    }
+                }).execute();
             }
         });
 

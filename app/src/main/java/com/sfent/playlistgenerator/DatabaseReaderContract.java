@@ -21,6 +21,20 @@ public final class DatabaseReaderContract
         public static final String COLUMN_NAME_LAST_MODIFIED_DATE = "LastModifiedDate";
     }
 
+    public static final String[] SQL_COLUMNS = {
+            SongEntry.TABLE_NAME,
+            SongEntry._ID,
+            SongEntry.COLUMN_NAME_FILEPATH,
+            SongEntry.COLUMN_NAME_TITLE,
+            SongEntry.COLUMN_NAME_ARTIST,
+            SongEntry.COLUMN_NAME_ALBUM_ARTIST,
+            SongEntry.COLUMN_NAME_ALBUM,
+            SongEntry.COLUMN_NAME_YEAR,
+            SongEntry.COLUMN_NAME_GENRE,
+            SongEntry.COLUMN_NAME_DURATION,
+            SongEntry.COLUMN_NAME_LAST_MODIFIED_DATE
+    };
+
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + SongEntry.TABLE_NAME + " (" +
                     SongEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -36,4 +50,7 @@ public final class DatabaseReaderContract
 
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + SongEntry.TABLE_NAME;
+
+    public static final String SQL_RETRIEVE_ENTRIES =
+            "SELECT * FROM " + SongEntry.TABLE_NAME;
 }
