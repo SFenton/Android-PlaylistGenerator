@@ -1,12 +1,22 @@
 package com.sfent.playlistgenerator;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.File;
 
 
 /**
@@ -26,6 +36,8 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Button mScanButton;
+    private DatabaseReaderHelper dbHelper;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,8 +76,32 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_fragment, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_home_fragment, container, false);
+
+        mScanButton = view.findViewById(R.id.scan_button);
+        mScanButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                mScanButton.setEnabled(false);
+                Toast.makeText(HomeFragment.super.getContext(), "Scanning your library...", Toast.LENGTH_LONG).show();
+                dbHelper = new DatabaseReaderHelper(getContext());
+                new MetadataReader(dbHelper, new AsyncResponse() {
+                    @Override
+                    public void processFinish(Integer result)
+                    {
+                        mScanButton.setEnabled(true);
+                        Toast.makeText(HomeFragment.super.getContext(), "Scan complete!  Found " + result + " tracks.", Toast.LENGTH_LONG).show();
+                    }
+                }).execute();
+            }
+        });
+
+        return view;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
