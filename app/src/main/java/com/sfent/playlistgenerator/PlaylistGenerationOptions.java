@@ -3,10 +3,13 @@ package com.sfent.playlistgenerator;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -28,6 +31,8 @@ public class PlaylistGenerationOptions extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private FloatingActionButton addPlaylistButton;
 
     public PlaylistGenerationOptions() {
         // Required empty public constructor
@@ -64,7 +69,26 @@ public class PlaylistGenerationOptions extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_playlist_generation_options, container, false);
+
+        addPlaylistButton = view.findViewById(R.id.add_playlist_fab);
+        addPlaylistButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                // Begin the transaction
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                // Replace the contents of the container with the new fragment
+                ft.replace(R.id.current_fragment, new AddNewPlaylist());
+                // or ft.add(R.id.your_placeholder, new FooFragment());
+                // Complete the changes added above
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

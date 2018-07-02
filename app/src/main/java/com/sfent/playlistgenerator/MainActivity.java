@@ -26,7 +26,7 @@ import java.security.Permissions;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener,
  PlaylistGenerationOptions.OnFragmentInteractionListener, Settings.OnFragmentInteractionListener,
-Spotify.OnFragmentInteractionListener, DailyPlaylistOptions.OnFragmentInteractionListener {
+Spotify.OnFragmentInteractionListener, DailyPlaylistOptions.OnFragmentInteractionListener, AddNewPlaylist.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private Fragment mFragment;

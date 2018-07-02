@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sfent.playlistgenerator.DailyPlaylistOptions">
+    tools:context="com.sfent.playlistgenerator.AddNewPlaylist">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -10,15 +10,16 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textAlignment="center"
-        android:text="Daily Playlist Options Fragment" />
+        android:text="Add New Playlist" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_playlist_fab"
+        android:id="@+id/save_playlist_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:src="@drawable/ic_baseline_add_24px"
+        android:src="@drawable/ic_baseline_save_24px"
         android:layout_margin="16dp"
         android:theme="@style/MyFloatingButton"/>
+
 
 </FrameLayout>
