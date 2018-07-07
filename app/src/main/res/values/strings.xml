@@ -13,4 +13,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    // Add playlist string
+    <string name="playlist_name">Playlist Name</string>
+    <string name="minimum_tracks">Minimum Tracks</string>
+    <string name="add_clause">Add New Clause</string>
+
 </resources>
