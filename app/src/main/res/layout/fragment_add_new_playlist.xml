@@ -62,7 +62,8 @@
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:text="@string/add_clause"
-            android:layout_gravity="bottom"/>
+            android:layout_gravity="bottom"
+            android:id="@+id/add_clause_button"/>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
